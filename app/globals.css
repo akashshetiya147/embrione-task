@@ -248,7 +248,6 @@ textarea {
   grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
   align-items: start;
   gap: 35px;
-  padding-bottom: 70px;
 }
 
 .register-form,
