@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
-const domains = [
+const DOMAINS = [
   "Web Development",
   "Design",
   "Logistics",
@@ -16,20 +16,9 @@ const domains = [
   "Event Management",
 ];
 
-const positions = ["Head", "Vice-Head", "Core Member", "Member"];
-
-const branches = [
-  "CSE",
-  "AIML",
-  "ECE",
-  "EEE",
-  "ME",
-  "Biotech",
-  "Other",
-];
-
+const POSITIONS = ["Head", "Vice-Head", "Core Member", "Member"];
+const BRANCHES = ["CSE", "AIML", "ECE", "EEE", "ME", "Biotech", "Other"];
 const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
-const MAX_IMAGE_WIDTH = 800;
 
 type FormData = {
   name: string;
@@ -44,6 +33,19 @@ type FormData = {
   bio: string;
 };
 
+const EMPTY_FORM: FormData = {
+  name: "",
+  domain: "Web Development",
+  position: "Member",
+  srn: "",
+  email: "",
+  linkedin: "",
+  github: "",
+  branch: "CSE",
+  semester: "1",
+  bio: "",
+};
+
 function convertToWebP(file: File): Promise<Blob> {
   return new Promise((resolve, reject) => {
     const image = new Image();
@@ -51,11 +53,7 @@ function convertToWebP(file: File): Promise<Blob> {
 
     image.onload = () => {
       try {
-        const scale = Math.min(
-          1,
-          MAX_IMAGE_WIDTH / image.naturalWidth
-        );
-
+        const scale = Math.min(1, 800 / image.naturalWidth);
         const canvas = document.createElement("canvas");
         canvas.width = Math.round(image.naturalWidth * scale);
         canvas.height = Math.round(image.naturalHeight * scale);
@@ -63,7 +61,7 @@ function convertToWebP(file: File): Promise<Blob> {
         const context = canvas.getContext("2d");
 
         if (!context) {
-          reject(new Error("Could not process the selected image."));
+          reject(new Error("Your browser could not process this image."));
           return;
         }
 
@@ -73,7 +71,7 @@ function convertToWebP(file: File): Promise<Blob> {
           (blob) => {
             if (!blob || blob.type !== "image/webp") {
               reject(
-                new Error("WebP conversion failed. Try another image.")
+                new Error("WebP conversion failed. Please choose another image.")
               );
               return;
             }
@@ -99,24 +97,25 @@ function convertToWebP(file: File): Promise<Blob> {
   });
 }
 
-export default function RegisterPage() {
-  const [form, setForm] = useState<FormData>({
-    name: "",
-    domain: "Web Development",
-    position: "Member",
-    srn: "",
-    email: "",
-    linkedin: "",
-    github: "",
-    branch: "CSE",
-    semester: "1",
-    bio: "",
-  });
+function validOptionalUrl(value: string): boolean {
+  if (!value.trim()) return true;
 
+  try {
+    const url = new URL(value.trim());
+    return url.protocol === "https:" || url.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
+export default function RegisterPage() {
+  const [form, setForm] = useState<FormData>(EMPTY_FORM);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState("");
   const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState<"success" | "error" | "info">("info");
+  const [messageType, setMessageType] = useState<"success" | "error" | "info">(
+    "info"
+  );
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -137,16 +136,10 @@ export default function RegisterPage() {
     >
   ) {
     const { name, value } = event.target;
-
-    setForm((previous) => ({
-      ...previous,
-      [name]: value,
-    }));
+    setForm((previous) => ({ ...previous, [name]: value }));
   }
 
-  function handlePhotoChange(
-    event: React.ChangeEvent<HTMLInputElement>
-  ) {
+  function handlePhotoChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0] ?? null;
     setMessage("");
 
@@ -156,29 +149,26 @@ export default function RegisterPage() {
     }
 
     if (!["image/png", "image/jpeg", "image/webp"].includes(file.type)) {
-      setSelectedFile(null);
       event.target.value = "";
+      setSelectedFile(null);
       setMessageType("error");
-      setMessage("Choose a PNG, JPG, JPEG or WebP image.");
+      setMessage("Please select a PNG, JPG, JPEG, or WebP image.");
       return;
     }
 
     if (file.size > MAX_IMAGE_SIZE) {
-      setSelectedFile(null);
       event.target.value = "";
+      setSelectedFile(null);
       setMessageType("error");
-      setMessage("Your image must be smaller than 10 MB.");
+      setMessage("Your profile photo must be 10 MB or smaller.");
       return;
     }
 
     setSelectedFile(file);
   }
 
-  async function submitForm(
-    event: React.FormEvent<HTMLFormElement>
-  ) {
+  async function submitForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     if (submitting) return;
 
     setMessage("");
@@ -189,8 +179,17 @@ export default function RegisterPage() {
       return;
     }
 
-    const srn = form.srn.trim().toUpperCase();
+    if (
+      !validOptionalUrl(form.linkedin) ||
+      !validOptionalUrl(form.github)
+    ) {
+      setMessageType("error");
+      setMessage("Please enter valid LinkedIn and GitHub URLs.");
+      return;
+    }
+
     const name = form.name.trim();
+    const srn = form.srn.trim().toUpperCase();
     const email = form.email.trim();
 
     if (!name || !srn || !email) {
@@ -203,9 +202,9 @@ export default function RegisterPage() {
     let uploadedPath: string | null = null;
 
     try {
-      // Check for an existing SRN when it is visible to this client.
-      // The database unique constraint also prevents duplicate inserts
-      // when Row Level Security hides pending records.
+      setMessageType("info");
+      setMessage("Checking your application details...");
+
       const { data: existing, error: lookupError } = await supabase
         .from("members")
         .select("id")
@@ -214,23 +213,21 @@ export default function RegisterPage() {
 
       if (lookupError) {
         throw new Error(
-          "Could not check existing applications. Verify your Supabase setup and policies."
+          "Could not check existing applications. Please verify your Supabase policies and try again."
         );
       }
 
       if (existing && existing.length > 0) {
         setMessageType("error");
-        setMessage("This SRN has already been submitted.");
+        setMessage("An application with this SRN already exists.");
         return;
       }
 
-      setMessageType("info");
       setMessage("Converting your photo to WebP...");
-
       const webpBlob = await convertToWebP(selectedFile);
       const filePath = `${crypto.randomUUID()}.webp`;
 
-      setMessage("Uploading your WebP photo...");
+      setMessage("Uploading your profile photo...");
 
       const { error: uploadError } = await supabase.storage
         .from("member-photos")
@@ -249,51 +246,35 @@ export default function RegisterPage() {
         .from("member-photos")
         .getPublicUrl(filePath);
 
-      const { error: insertError } = await supabase
-        .from("members")
-        .insert({
-          name,
-          domain: form.domain,
-          position: form.position,
-          srn,
-          email,
-          linkedin_url: form.linkedin.trim() || null,
-          github_url: form.github.trim() || null,
-          branch: form.branch,
-          semester: Number(form.semester),
-          bio: form.bio.trim() || null,
-          photo_url: publicUrlData.publicUrl,
-          status: "pending",
-        });
+      setMessage("Saving your application...");
+
+      const { error: insertError } = await supabase.from("members").insert({
+        name,
+        domain: form.domain,
+        position: form.position,
+        srn,
+        email,
+        linkedin_url: form.linkedin.trim() || null,
+        github_url: form.github.trim() || null,
+        branch: form.branch,
+        semester: Number(form.semester),
+        bio: form.bio.trim() || null,
+        photo_url: publicUrlData.publicUrl,
+        status: "pending",
+      });
 
       if (insertError) {
         if (insertError.code === "23505") {
           setMessageType("error");
-          setMessage("This SRN has already been submitted.");
+          setMessage("An application with this SRN already exists.");
           return;
         }
 
-        throw new Error(`Could not save application: ${insertError.message}`);
+        throw new Error(`Could not save your application: ${insertError.message}`);
       }
 
-      setMessageType("success");
-      setMessage(
-        "Application submitted successfully! Your profile is pending admin approval."
-      );
-
-      setForm({
-        name: "",
-        domain: "Web Development",
-        position: "Member",
-        srn: "",
-        email: "",
-        linkedin: "",
-        github: "",
-        branch: "CSE",
-        semester: "1",
-        bio: "",
-      });
-
+      uploadedPath = null;
+      setForm(EMPTY_FORM);
       setSelectedFile(null);
 
       const input = document.getElementById(
@@ -301,12 +282,20 @@ export default function RegisterPage() {
       ) as HTMLInputElement | null;
 
       if (input) input.value = "";
+
+      setMessageType("success");
+      setMessage(
+        "Application submitted successfully! Your application is now pending admin review."
+      );
     } catch (error) {
-      // Avoid leaving an orphaned photo when the database insert fails.
       if (uploadedPath) {
-        await supabase.storage
+        const { error: cleanupError } = await supabase.storage
           .from("member-photos")
           .remove([uploadedPath]);
+
+        if (cleanupError) {
+          console.error("Could not remove the unused uploaded photo:", cleanupError);
+        }
       }
 
       setMessageType("error");
@@ -321,29 +310,41 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="register-shell">
-      <nav className="register-nav">
+    <main className="register-shell register-modern">
+      <nav className="register-nav" aria-label="Main navigation">
         <Link href="/" className="brand">
-          <span className="brand-mark">E</span>
-          EMBRIONE
+          <span className="brand-mark" aria-hidden="true">✦</span>
+          <span>EMBRIONE</span>
         </Link>
 
-        <Link href="/" className="back-link">
-          ← Home
+        <Link href="/" className="register-home-button">
+          <span aria-hidden="true">←</span>
+          Back to Home
         </Link>
       </nav>
 
-      <header className="register-heading">
-        <p className="eyebrow">BECOME PART OF THE COMMUNITY</p>
-        <h1>Make your mark.</h1>
+      <header className="register-heading register-hero">
+        <p className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
+        <h1>
+          Make your <span>mark.</span>
+        </h1>
         <p>
-          Tell us about yourself. Your member card updates automatically
-          as you fill in your details.
+          Bring your ideas, curiosity, and energy to Embrione. Tell us about
+          yourself and preview your member card as you go.
         </p>
+
+        <div className="register-hero-tags">
+          <span>✦ Build together</span>
+          <span>✦ Create impact</span>
+          <span>✦ Find your people</span>
+        </div>
       </header>
 
-      <div className="register-layout">
-        <form className="register-form" onSubmit={submitForm}>
+      <div className="register-layout register-modern-layout">
+        <form
+          className="register-form register-modern-form"
+          onSubmit={submitForm}
+        >
           <div className="form-section-title">
             <span>01</span>
             <h2>Personal information</h2>
@@ -356,6 +357,7 @@ export default function RegisterPage() {
               value={form.name}
               onChange={update}
               placeholder="Enter your full name"
+              autoComplete="name"
               required
             />
           </label>
@@ -364,8 +366,8 @@ export default function RegisterPage() {
             <label>
               Domain *
               <select name="domain" value={form.domain} onChange={update}>
-                {domains.map((item) => (
-                  <option key={item} value={item}>{item}</option>
+                {DOMAINS.map((domain) => (
+                  <option key={domain} value={domain}>{domain}</option>
                 ))}
               </select>
             </label>
@@ -373,32 +375,34 @@ export default function RegisterPage() {
             <label>
               Position *
               <select name="position" value={form.position} onChange={update}>
-                {positions.map((item) => (
-                  <option key={item} value={item}>{item}</option>
+                {POSITIONS.map((position) => (
+                  <option key={position} value={position}>{position}</option>
                 ))}
               </select>
             </label>
           </div>
 
           <label>
-            SRN *
+            Student Registration Number (SRN) *
             <input
               name="srn"
               value={form.srn}
               onChange={update}
-              placeholder="PES1UG25CS001"
+              placeholder="e.g. PES1UG25CS001"
+              autoCapitalize="characters"
               required
             />
           </label>
 
           <label>
-            Email *
+            Email address *
             <input
               type="email"
               name="email"
               value={form.email}
               onChange={update}
               placeholder="you@example.com"
+              autoComplete="email"
               required
             />
           </label>
@@ -412,22 +416,18 @@ export default function RegisterPage() {
             <label>
               Branch *
               <select name="branch" value={form.branch} onChange={update}>
-                {branches.map((item) => (
-                  <option key={item} value={item}>{item}</option>
+                {BRANCHES.map((branch) => (
+                  <option key={branch} value={branch}>{branch}</option>
                 ))}
               </select>
             </label>
 
             <label>
               Semester *
-              <select
-                name="semester"
-                value={form.semester}
-                onChange={update}
-              >
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                  <option key={item} value={String(item)}>
-                    Semester {item}
+              <select name="semester" value={form.semester} onChange={update}>
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((semester) => (
+                  <option key={semester} value={String(semester)}>
+                    Semester {semester}
                   </option>
                 ))}
               </select>
@@ -435,34 +435,34 @@ export default function RegisterPage() {
           </div>
 
           <label>
-            LinkedIn URL
+            LinkedIn profile
             <input
               type="url"
               name="linkedin"
               value={form.linkedin}
               onChange={update}
-              placeholder="https://linkedin.com/in/..."
+              placeholder="https://linkedin.com/in/your-profile"
             />
           </label>
 
           <label>
-            GitHub URL
+            GitHub profile
             <input
               type="url"
               name="github"
               value={form.github}
               onChange={update}
-              placeholder="https://github.com/..."
+              placeholder="https://github.com/your-username"
             />
           </label>
 
           <label>
-            Short bio
+            Introduce yourself
             <textarea
               name="bio"
               value={form.bio}
               onChange={update}
-              placeholder="Tell us what you enjoy building..."
+              placeholder="What do you enjoy creating or learning?"
               maxLength={200}
               rows={4}
             />
@@ -471,64 +471,79 @@ export default function RegisterPage() {
             </span>
           </label>
 
-          <label>
-            Profile picture *
-            <input
-              id="profile-picture"
-              type="file"
-              accept="image/png,image/jpeg,image/webp"
-              onChange={handlePhotoChange}
-              required
-            />
-            <span className="character-count">
-              PNG, JPG or WebP · Max 10 MB · Converted to WebP on submit
-            </span>
-          </label>
+          <div className="upload-section">
+            <p className="upload-title">03 · Profile picture</p>
+
+            <label className="upload-dropzone" htmlFor="profile-picture">
+              <span className="upload-icon" aria-hidden="true">↑</span>
+
+              <strong>
+                {selectedFile ? "Photo selected" : "Upload your profile photo"}
+              </strong>
+
+              <span className="upload-filename">
+                {selectedFile
+                  ? selectedFile.name
+                  : "Click here to choose a PNG, JPG or WebP image"}
+              </span>
+
+              <small>Maximum 10 MB · Automatically converted to WebP</small>
+
+              <input
+                id="profile-picture"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                onChange={handlePhotoChange}
+                required={!selectedFile}
+              />
+            </label>
+          </div>
 
           <button
-            className="submit-button"
+            className="submit-button register-modern-submit"
             type="submit"
             disabled={submitting}
           >
-            {submitting ? "Submitting..." : "Submit application"}
-            <span>{submitting ? "…" : "→"}</span>
+            <span>
+              {submitting ? "Submitting application..." : "Submit my application"}
+            </span>
+            <span aria-hidden="true">{submitting ? "…" : "→"}</span>
           </button>
 
           {message && (
             <p
-              className="form-message"
+              className={`form-message register-status ${messageType}`}
               role="status"
               aria-live="polite"
-              style={{
-                color:
-                  messageType === "error"
-                    ? "#ff8e8e"
-                    : messageType === "success"
-                      ? "#b6f36b"
-                      : "#c5cad4",
-              }}
             >
               {message}
             </p>
           )}
+
+          <p className="privacy-note">
+            Your application stays pending until the Embrione admin team reviews it.
+          </p>
         </form>
 
-        <aside className="preview-panel">
+        <aside className="preview-panel register-modern-preview">
           <p className="eyebrow">LIVE PREVIEW</p>
+          <p className="preview-intro">
+            This is how your profile card will look.
+          </p>
 
-          <div className="member-card">
+          <div className="member-card register-preview-card">
             <div className="member-card-top">
-              <span className="mini-brand">E.</span>
-              <span className="member-badge">MEMBER PROFILE</span>
+              <span className="mini-brand">EMBRIONE</span>
+              <span className="member-badge">FUTURE MEMBER</span>
             </div>
 
             <div className="avatar">
               {photoPreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={photoPreview} alt="Profile preview" />
+                <img src={photoPreview} alt="Your profile preview" />
               ) : (
                 <span>
-                  {form.name.trim().charAt(0).toUpperCase() || "E"}
+                  {form.name.trim().charAt(0).toUpperCase() || "✦"}
                 </span>
               )}
             </div>
@@ -536,9 +551,8 @@ export default function RegisterPage() {
             <p className="card-domain">{form.domain}</p>
             <h2>{form.name || "Your Name"}</h2>
             <p className="card-position">{form.position}</p>
-
             <p className="card-bio">
-              {form.bio || "Your introduction will appear here."}
+              {form.bio || "Your story starts here. Add a short bio to introduce yourself."}
             </p>
 
             <div className="member-details">
@@ -553,17 +567,31 @@ export default function RegisterPage() {
             </div>
 
             <div className="member-card-footer">
-              <span>THE EMBRIONE</span>
+              <span>EMBRIONE COMMUNITY</span>
               <span>PES UNIVERSITY</span>
             </div>
           </div>
 
-          <p className="preview-note">
-            Your application will appear in the team directory only after
-            an administrator approves it.
-          </p>
+          <div className="preview-tip">
+            <span aria-hidden="true">✦</span>
+            <p>
+              <strong>Make it yours.</strong>
+              <br />
+              A clear photo and a genuine introduction help the team get to know you.
+            </p>
+          </div>
         </aside>
       </div>
+
+      <footer className="register-footer register-footer-3d">
+        <span>EMBRIONE · MADE BY THE COMMUNITY</span>
+
+        <Link href="/" className="return-home-3d">
+          <span aria-hidden="true">←</span>
+          <span>Return to Home</span>
+          <span aria-hidden="true">↑</span>
+        </Link>
+      </footer>
     </main>
   );
 }

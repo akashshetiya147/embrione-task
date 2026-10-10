@@ -1,0 +1,1646 @@
+
+/* ===== EMBRIONE REGISTRATION PAGE ===== */
+
+.register-modern {
+  --reg-green: #b8f779;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 5vw, 72px) 30px;
+  color: #f5f7fb;
+  background:
+    radial-gradient(ellipse at 8% 12%, #b8f7790c, transparent 30%),
+    radial-gradient(ellipse at 92% 40%, #8e7aff0c, transparent 30%),
+    #080a0d;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.register-modern *,
+.register-modern *::before,
+.register-modern *::after {
+  box-sizing: border-box;
+}
+
+.register-modern .register-nav {
+  height: 88px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.register-modern .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #f6f7f8;
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 2.5px;
+  text-decoration: none;
+}
+
+.register-modern .brand-mark {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border: 1px solid #d9ffb4;
+  border-radius: 14px;
+  color: #11160c;
+  background: linear-gradient(145deg, #d7ffa9, #9fe65c);
+  box-shadow: 0 6px 0 #527c31, 0 13px 25px #b8f7791c;
+}
+
+.register-modern .register-home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 10px 16px;
+  border: 1px solid #37414e;
+  border-radius: 11px;
+  color: #e7ebf2;
+  background: linear-gradient(145deg, #202631, #11151c);
+  box-shadow: 0 5px 0 #06080b, 0 10px 20px #0004;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .2s, border-color .2s;
+}
+
+.register-modern .register-home-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--reg-green);
+}
+
+.register-modern .register-hero {
+  padding: clamp(55px, 8vw, 100px) 0 50px;
+}
+
+.register-modern .register-hero .eyebrow,
+.register-modern .register-modern-preview .eyebrow {
+  margin: 0 0 17px;
+  color: var(--reg-green);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 3px;
+}
+
+.register-modern .register-hero h1 {
+  margin: 0;
+  color: #f7f8fb;
+  font-size: clamp(43px, 7.4vw, 84px);
+  font-weight: 850;
+  line-height: 1.04;
+  letter-spacing: -.065em;
+}
+
+.register-modern .register-hero h1 span {
+  color: var(--reg-green);
+  text-shadow: 0 0 40px #b8f77920;
+}
+
+.register-modern .register-hero > p:not(.eyebrow) {
+  max-width: 610px;
+  margin: 23px 0 0;
+  color: #a1aaba;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.register-modern .register-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 23px;
+}
+
+.register-modern .register-hero-tags span {
+  padding: 9px 13px;
+  border: 1px solid #303b31;
+  border-radius: 30px;
+  color: #d0dec7;
+  background: linear-gradient(145deg, #151d15, #0e120f);
+  box-shadow: 0 4px 10px #0003;
+  font-size: 10px;
+}
+
+.register-modern .register-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: start;
+  gap: clamp(18px, 3vw, 32px);
+}
+
+.register-modern .register-form,
+.register-modern .register-modern-preview {
+  min-width: 0;
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid #333d49;
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at top left, #b8f77908, transparent 42%),
+    linear-gradient(145deg, #171c25, #10131a 65%, #0d1016);
+  box-shadow: 0 24px 55px #0005, 0 7px 0 #05070a,
+    inset 1px 1px 0 #ffffff0a;
+}
+
+.register-modern .register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.register-modern .form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 2px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.register-modern .form-section-title span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 33px;
+  width: 33px;
+  height: 33px;
+  border: 1px solid #45563a;
+  border-radius: 10px;
+  color: var(--reg-green);
+  background: linear-gradient(145deg, #26351e, #151e12);
+  box-shadow: 0 4px 0 #080c07;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.register-modern .form-section-title h2 {
+  margin: 0;
+  color: #f1f3f8;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.register-modern .register-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  margin: 0;
+  color: #dfe5ee;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.register-modern .register-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.register-modern .register-form input:not([type="file"]),
+.register-modern .register-form select,
+.register-modern .register-form textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 47px;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid #343d4b;
+  border-radius: 10px;
+  outline: none;
+  color: #f3f5f8;
+  background: linear-gradient(145deg, #0a0d12, #131822);
+  box-shadow: inset 3px 3px 7px #0004;
+  font-family: inherit;
+  font-size: 12px;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.register-modern .register-form input::placeholder,
+.register-modern .register-form textarea::placeholder {
+  color: #747f8f;
+  opacity: 1;
+}
+
+.register-modern .register-form select {
+  cursor: pointer;
+}
+
+.register-modern .register-form select option {
+  color: #f5f5f5;
+  background: #11151c;
+}
+
+.register-modern .register-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.register-modern .register-form input:focus,
+.register-modern .register-form select:focus,
+.register-modern .register-form textarea:focus {
+  border-color: #a9eb70;
+  box-shadow: 0 0 0 3px #b8f77912, inset 2px 2px 6px #0004;
+}
+
+.register-modern .character-count {
+  align-self: flex-end;
+  margin-top: -3px;
+  color: #8e98a8;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Custom profile upload */
+.register-modern .upload-section {
+  width: 100%;
+  margin: 4px 0;
+}
+
+.register-modern .upload-title {
+  margin: 0 0 13px;
+  color: #e6eaf1;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.register-modern .register-form label.upload-dropzone {
+  position: relative;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  min-height: 180px !important;
+  margin: 0 !important;
+  padding: 24px !important;
+  border: 1px dashed #53684a !important;
+  border-radius: 16px !important;
+  color: #f1f5eb !important;
+  background: radial-gradient(ellipse at top, #b8f77912, transparent 70%),
+    linear-gradient(145deg, #131a14, #0d1110) !important;
+  box-shadow: inset 0 2px 12px #0003 !important;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+.register-modern .register-form label.upload-dropzone:hover {
+  transform: translateY(-2px);
+  border-color: var(--reg-green) !important;
+  box-shadow: 0 10px 24px #0003, inset 0 2px 12px #0003 !important;
+}
+
+.register-modern .upload-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #4a613c;
+  border-radius: 15px;
+  color: var(--reg-green);
+  background: linear-gradient(145deg, #26371e, #141d11);
+  box-shadow: 0 5px 0 #090d07, 0 10px 20px #0004;
+  font-size: 25px;
+}
+
+.register-modern .upload-dropzone strong {
+  color: #f0f4eb;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.register-modern .upload-dropzone > span:not(.upload-icon) {
+  max-width: 100%;
+  color: #aab5a4;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .upload-dropzone small {
+  color: #7f8a7b;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.register-modern .register-form label.upload-dropzone input[type="file"] {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Compact raised submit button */
+.register-modern .register-form .register-modern-submit {
+  display: inline-flex !important;
+  align-self: flex-start !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  min-height: 48px !important;
+  margin: 5px 0 8px !important;
+  padding: 13px 19px !important;
+  border: 1px solid #d8ffb3 !important;
+  border-radius: 11px !important;
+  color: #11170c !important;
+  background: linear-gradient(145deg, #d5ffa5, #a2e75b) !important;
+  box-shadow: 0 5px 0 #527c30, 0 12px 22px #b8f77915 !important;
+  font-family: inherit;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.register-modern .register-form .register-modern-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #527c30, 0 16px 26px #b8f77920 !important;
+}
+
+.register-modern .register-form .register-modern-submit:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #527c30 !important;
+}
+
+.register-modern .register-form .register-modern-submit:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.register-modern .privacy-note {
+  width: 100%;
+  margin: 0;
+  color: #9ba695;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.register-modern .register-status {
+  width: 100%;
+  margin: 0;
+  padding: 13px 15px;
+  border: 1px solid #374050;
+  border-radius: 11px;
+  color: #dfe6f1;
+  background: #111721;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-status.success {
+  border-color: #49683b;
+  color: #d8ffc0;
+  background: #121d10;
+}
+
+.register-modern .register-status.error {
+  border-color: #704147;
+  color: #ffcbd0;
+  background: #211316;
+}
+
+/* Live profile card */
+.register-modern .register-modern-preview {
+  position: sticky;
+  top: 22px;
+  padding: clamp(18px, 2.5vw, 28px);
+  background: radial-gradient(ellipse at top right, #b8f7790b, transparent 50%),
+    linear-gradient(145deg, #161b24, #0e1218);
+}
+
+.register-modern .preview-intro {
+  margin: -5px 0 22px;
+  color: #9ea8b7;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.register-modern .register-preview-card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  margin-top: 20px;
+  padding: clamp(20px, 3vw, 30px);
+  overflow: hidden;
+  border: 1px solid #3b4b3b;
+  border-radius: 20px;
+  color: #f3f7f0;
+  background: radial-gradient(ellipse at 100% 0%, #41613b70, transparent 48%),
+    radial-gradient(ellipse at 0% 100%, #1d302650, transparent 50%),
+    linear-gradient(145deg, #141b17, #090d0b 72%);
+  box-shadow: 0 20px 35px #0005, 0 7px 0 #050805,
+    inset 1px 1px 0 #ffffff12;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+
+.register-modern .register-preview-card:hover {
+  transform: translateY(-3px);
+  border-color: #66825a;
+  box-shadow: 0 26px 42px #0005, 0 7px 0 #050805,
+    inset 1px 1px 0 #ffffff15;
+}
+
+.register-modern .member-card-top,
+.register-modern .member-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.register-modern .member-card-top {
+  margin-bottom: 28px;
+}
+
+.register-modern .mini-brand {
+  color: #f4f7ef;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 2.5px;
+}
+
+.register-modern .member-badge {
+  padding: 7px 9px;
+  border: 1px solid #40513b;
+  border-radius: 8px;
+  color: var(--reg-green);
+  background: #1a2518;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1px;
+}
+
+.register-modern .register-preview-card .avatar {
+  display: grid;
+  place-items: center;
+  width: 94px;
+  height: 94px;
+  margin: 0 0 23px;
+  overflow: hidden;
+  border: 2px solid var(--reg-green);
+  border-radius: 50%;
+  color: var(--reg-green);
+  background: linear-gradient(145deg, #222d22, #111a13);
+  box-shadow: 0 0 0 6px #b8f7790b, 0 12px 25px #0005;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.register-modern .register-preview-card .avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.register-modern .register-preview-card .card-domain {
+  margin: 0 0 9px;
+  color: var(--reg-green);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 1.8px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-preview-card h2 {
+  margin: 0 0 8px;
+  color: #f5f7f2;
+  font-size: clamp(23px, 3vw, 31px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-preview-card .card-position {
+  margin: 0 0 14px;
+  color: #c0cbb9;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.register-modern .register-preview-card .card-bio {
+  min-height: 65px;
+  margin: 0;
+  color: #a8b3a5;
+  font-size: 12px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-preview-card .member-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+  padding: 17px 0;
+  border-top: 1px solid #ffffff16;
+  border-bottom: 1px solid #ffffff16;
+}
+
+.register-modern .register-preview-card .member-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.register-modern .register-preview-card .member-details span {
+  color: #8d9989;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 1.4px;
+}
+
+.register-modern .register-preview-card .member-details strong {
+  color: #f0f5ec;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-preview-card .member-card-footer {
+  margin-top: 17px;
+  color: #899587;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+
+.register-modern .preview-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #354034;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #182018, #101510);
+  box-shadow: 0 7px 0 #080b08, inset 1px 1px 0 #ffffff07;
+}
+
+.register-modern .preview-tip > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #455a3b;
+  border-radius: 9px;
+  color: var(--reg-green);
+  background: #202d1a;
+}
+
+.register-modern .preview-tip p {
+  min-width: 0;
+  margin: 0;
+  color: #a5b09e;
+  font-size: 11px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .preview-tip strong {
+  color: #e6f4dd;
+  font-size: 12px;
+}
+
+/* Footer and Home link */
+.register-modern .register-footer-3d {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  width: 100%;
+  margin: 40px auto 0 !important;
+  padding: 25px 0 18px !important;
+  border-top: 1px solid #303a33 !important;
+}
+
+.register-modern .register-footer-3d > span {
+  display: block;
+  color: #9ba695;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  line-height: 1.8;
+}
+
+.register-modern .register-footer-3d .return-home-3d {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+  gap: 10px !important;
+  padding: 12px 17px !important;
+  border: 1px solid #77975e !important;
+  border-radius: 11px !important;
+  color: #d5ffa5 !important;
+  background: linear-gradient(145deg, #24321e, #111910) !important;
+  box-shadow: 0 4px 0 #080d07, 0 9px 18px #0004 !important;
+  font-size: 11px !important;
+  font-weight: 750 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  transition: transform .2s, box-shadow .2s !important;
+}
+
+.register-modern .register-footer-3d .return-home-3d:hover {
+  transform: translateY(-3px);
+  border-color: var(--reg-green) !important;
+  box-shadow: 0 7px 0 #080d07, 0 14px 24px #b8f77915 !important;
+}
+
+.register-modern .register-footer-3d .return-home-3d:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #080d07 !important;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  .register-modern .register-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .register-modern .register-modern-preview {
+    position: relative;
+    top: auto;
+  }
+
+  .register-modern .register-preview-card {
+    max-width: 580px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .register-modern {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .register-modern .register-nav {
+    height: 75px;
+  }
+
+  .register-modern .brand {
+    gap: 9px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+  .register-modern .brand-mark {
+    width: 37px;
+    height: 37px;
+    border-radius: 11px;
+  }
+
+  .register-modern .register-home-button {
+    gap: 6px;
+    padding: 9px 10px;
+    font-size: 10px;
+  }
+
+  .register-modern .register-hero {
+    padding: 53px 0 32px;
+  }
+
+  .register-modern .register-hero h1 {
+    font-size: clamp(42px, 12vw, 62px);
+    letter-spacing: -2.8px;
+  }
+
+  .register-modern .register-form {
+    gap: 17px;
+    padding: 19px 15px;
+    border-radius: 16px;
+  }
+
+  .register-modern .register-form .form-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 17px;
+  }
+
+  .register-modern .register-form .register-modern-submit {
+    width: 100% !important;
+  }
+
+  .register-modern .register-modern-preview {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .register-modern .register-preview-card {
+    padding: 19px;
+  }
+
+  .register-modern .register-footer-3d {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    margin-top: 38px !important;
+  }
+}
+
+
+/* FINAL FIX: registration photo uploader */
+.register-modern .register-form .upload-section label.upload-dropzone {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  min-height: 190px !important;
+  padding: 24px !important;
+  border: 1px dashed #8fc85d !important;
+  border-radius: 16px !important;
+  background: linear-gradient(145deg, #172219, #0b0f0c) !important;
+  text-align: center !important;
+  cursor: pointer !important;
+}
+
+.register-modern .register-form .upload-section label.upload-dropzone .upload-icon {
+  display: grid !important;
+  place-items: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 14px !important;
+  color: #10160b !important;
+  background: #b8f779 !important;
+  box-shadow: 0 5px 0 #527c30 !important;
+  font-size: 25px !important;
+}
+
+.register-modern .register-form .upload-section label.upload-dropzone input[type="file"] {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.register-modern .register-form .register-modern-submit {
+  display: inline-flex !important;
+  width: auto !important;
+  min-width: 220px !important;
+  min-height: 48px !important;
+  align-self: flex-start !important;
+  padding: 12px 18px !important;
+  font-size: 13px !important;
+}
+
+.register-modern .register-footer-3d {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 18px !important;
+}
+
+.register-modern .register-footer-3d .return-home-3d {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 12px 17px !important;
+  border: 1px solid #77975e !important;
+  border-radius: 11px !important;
+  color: #d5ffa5 !important;
+  background: linear-gradient(145deg, #24321e, #111910) !important;
+  box-shadow: 0 4px 0 #080d07 !important;
+  text-decoration: none !important;
+}
+
+
+
+/* ==========================================================
+   EMBRIONE REGISTRATION — COMPLETE RESPONSIVE STYLING
+   Scoped to .register-modern to protect other pages.
+   ========================================================== */
+
+.register-modern {
+  --reg-green: #b8f779;
+  --reg-border: #303946;
+  width: 100%;
+  max-width: 1600px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4.5vw, 70px) 30px;
+  color: #f4f6fa;
+  background:
+    radial-gradient(ellipse at 5% 10%, #b8f7790c, transparent 30%),
+    radial-gradient(ellipse at 95% 45%, #a78bfa0b, transparent 30%),
+    #080a0e;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.register-modern,
+.register-modern *,
+.register-modern *::before,
+.register-modern *::after {
+  box-sizing: border-box;
+}
+
+.register-modern a {
+  text-decoration: none;
+}
+
+.register-modern .register-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 88px;
+  border-bottom: 1px solid #ffffff17;
+}
+
+.register-modern .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #f5f7f8;
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 2.5px;
+}
+
+.register-modern .brand-mark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #d9ffb5;
+  border-radius: 14px;
+  color: #10150b;
+  background: linear-gradient(145deg, #d9ffa9, #a1e75b);
+  box-shadow: 0 5px 0 #547e31, 0 12px 25px #b8f77916;
+  font-size: 24px;
+}
+
+.register-modern .register-home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 43px;
+  padding: 11px 16px;
+  border: 1px solid #37404d;
+  border-radius: 11px;
+  color: #e9edf4;
+  background: linear-gradient(145deg, #202631, #11151c);
+  box-shadow: 0 4px 0 #05070a, 0 9px 20px #0003;
+  font-size: 12px;
+  font-weight: 750;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+.register-modern .register-home-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--reg-green);
+  box-shadow: 0 6px 0 #05070a, 0 14px 25px #0004;
+}
+
+.register-modern .register-hero {
+  padding: clamp(54px, 7vw, 94px) 0 48px;
+}
+
+.register-modern .register-hero .eyebrow,
+.register-modern .register-modern-preview > .eyebrow {
+  margin: 0 0 17px;
+  color: var(--reg-green);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 3px;
+  line-height: 1.8;
+}
+
+.register-modern .register-hero h1 {
+  margin: 0;
+  color: #f6f7fb;
+  font-size: clamp(44px, 7vw, 82px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -.065em;
+}
+
+.register-modern .register-hero h1 span {
+  color: var(--reg-green);
+  text-shadow: 0 0 38px #b8f77920;
+}
+
+.register-modern .register-hero > p:not(.eyebrow) {
+  max-width: 690px;
+  margin: 22px 0 0;
+  color: #aab3c2;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.register-modern .register-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.register-modern .register-hero-tags span {
+  padding: 9px 12px;
+  border: 1px solid #303b30;
+  border-radius: 30px;
+  color: #d0dfc6;
+  background: linear-gradient(145deg, #172017, #0d110e);
+  box-shadow: 0 4px 10px #0003;
+  font-size: 10px;
+}
+
+.register-modern .register-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: start;
+  gap: clamp(18px, 3vw, 32px);
+}
+
+.register-modern .register-form,
+.register-modern .register-modern-preview {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 34px);
+  border: 1px solid var(--reg-border);
+  border-radius: 21px;
+  background:
+    radial-gradient(ellipse at top left, #b8f77907, transparent 44%),
+    linear-gradient(145deg, #171c25, #10131a 70%, #0c1016);
+  box-shadow: 0 22px 48px #0004, 0 6px 0 #05070a,
+    inset 1px 1px 0 #ffffff08;
+}
+
+.register-modern .register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.register-modern .form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 3px 0 2px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ffffff13;
+}
+
+.register-modern .form-section-title span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #46563b;
+  border-radius: 10px;
+  color: var(--reg-green);
+  background: linear-gradient(145deg, #26351e, #141c11);
+  box-shadow: 0 4px 0 #080c07;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.register-modern .form-section-title h2 {
+  margin: 0;
+  color: #f0f3f8;
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.register-modern .register-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  margin: 0;
+  color: #e1e6ef;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.register-modern .register-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.register-modern .register-form input:not([type="file"]),
+.register-modern .register-form select,
+.register-modern .register-form textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 47px;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid #303948;
+  border-radius: 10px;
+  outline: none;
+  color: #f3f5f9;
+  background: linear-gradient(145deg, #0a0d12, #121720);
+  box-shadow: inset 3px 3px 7px #0004;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.register-modern .register-form input::placeholder,
+.register-modern .register-form textarea::placeholder {
+  color: #7e899b;
+  opacity: 1;
+}
+
+.register-modern .register-form select {
+  cursor: pointer;
+}
+
+.register-modern .register-form select option {
+  color: #f3f5f9;
+  background: #11151c;
+}
+
+.register-modern .register-form textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.8;
+}
+
+.register-modern .register-form input:focus,
+.register-modern .register-form select:focus,
+.register-modern .register-form textarea:focus {
+  border-color: #a9eb70;
+  box-shadow: 0 0 0 3px #b8f77912, inset 2px 2px 6px #0004;
+}
+
+.register-modern .character-count {
+  align-self: flex-end;
+  margin-top: -3px;
+  color: #929db0;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.register-modern .second-title {
+  margin-top: 12px;
+}
+
+/* Upload card: hide the native browser input without disabling the label. */
+.register-modern .upload-section {
+  width: 100%;
+  margin: 4px 0;
+}
+
+.register-modern .upload-title {
+  margin: 0 0 14px;
+  color: #e9edf4;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.register-modern .register-form label.upload-dropzone {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  min-height: 190px !important;
+  margin: 0 !important;
+  padding: 24px !important;
+  overflow: hidden;
+  border: 1px dashed #657d55 !important;
+  border-radius: 16px !important;
+  color: #f2f6ee !important;
+  background:
+    radial-gradient(ellipse at top, #b8f77912, transparent 70%),
+    linear-gradient(145deg, #172219, #0b0f0c) !important;
+  box-shadow: inset 0 2px 12px #0003 !important;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+.register-modern .register-form label.upload-dropzone:hover {
+  transform: translateY(-2px);
+  border-color: var(--reg-green) !important;
+  box-shadow: 0 12px 25px #0004, inset 0 0 20px #b8f77908 !important;
+}
+
+.register-modern .upload-dropzone .upload-icon {
+  display: grid !important;
+  place-items: center;
+  flex: 0 0 48px;
+  width: 48px !important;
+  height: 48px !important;
+  padding: 0 !important;
+  border: 1px solid #d7ffb0;
+  border-radius: 14px;
+  color: #10160b !important;
+  background: linear-gradient(145deg, #d5ffa5, #a2e75b) !important;
+  box-shadow: 0 5px 0 #527c30, 0 10px 20px #0004;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.register-modern .upload-dropzone strong {
+  color: #f0f4eb;
+  font-size: 13px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.register-modern .upload-dropzone .upload-filename {
+  display: block;
+  max-width: 100%;
+  color: #a9b5a5;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .upload-dropzone small {
+  color: #85917f;
+  font-size: 10px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.register-modern .register-form label.upload-dropzone input[type="file"] {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Compact 3D submit button */
+.register-modern .register-form .register-modern-submit {
+  display: inline-flex !important;
+  align-self: flex-start !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  width: auto !important;
+  max-width: 100%;
+  min-width: 220px;
+  min-height: 48px !important;
+  margin: 5px 0 8px !important;
+  padding: 13px 18px !important;
+  border: 1px solid #d8ffb3 !important;
+  border-radius: 11px !important;
+  color: #11170c !important;
+  background: linear-gradient(145deg, #d5ffa5, #a2e75b) !important;
+  box-shadow: 0 5px 0 #527c30, 0 12px 22px #b8f77915 !important;
+  font-family: inherit;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.register-modern .register-form .register-modern-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #527c30, 0 16px 26px #b8f77920 !important;
+}
+
+.register-modern .register-form .register-modern-submit:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #527c30 !important;
+}
+
+.register-modern .register-form .register-modern-submit:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.register-modern .register-form .register-modern-submit span {
+  line-height: 1.5;
+}
+
+.register-modern .privacy-note {
+  width: 100%;
+  margin: 0;
+  color: #9ba695;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.register-modern .register-status {
+  width: 100%;
+  margin: 0;
+  padding: 13px 15px;
+  border: 1px solid #374050;
+  border-radius: 11px;
+  color: #dfe6f1;
+  background: #111721;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-status.success {
+  border-color: #49683b;
+  color: #d8ffc0;
+  background: #121d10;
+}
+
+.register-modern .register-status.error {
+  border-color: #704147;
+  color: #ffcbd0;
+  background: #211316;
+}
+
+.register-modern .register-status.info {
+  border-color: #374050;
+  color: #dfe6f1;
+}
+
+/* Sticky live preview */
+.register-modern .register-modern-preview {
+  position: sticky;
+  top: 22px;
+  background:
+    radial-gradient(ellipse at top right, #b8f7790b, transparent 50%),
+    linear-gradient(145deg, #161b24, #0e1218);
+}
+
+.register-modern .preview-intro {
+  margin: -5px 0 22px;
+  color: #a2adbd;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.register-modern .register-preview-card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  margin-top: 20px;
+  padding: clamp(20px, 3vw, 30px);
+  overflow: hidden;
+  border: 1px solid #3b4b3b;
+  border-radius: 20px;
+  color: #f3f7f0;
+  background:
+    radial-gradient(ellipse at 100% 0%, #41613b70, transparent 48%),
+    radial-gradient(ellipse at 0% 100%, #1d302650, transparent 50%),
+    linear-gradient(145deg, #141b17, #090d0b 72%);
+  box-shadow: 0 20px 35px #0005, 0 7px 0 #050805,
+    inset 1px 1px 0 #ffffff12;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+
+.register-modern .register-preview-card:hover {
+  transform: translateY(-3px);
+  border-color: #66825a;
+  box-shadow: 0 26px 42px #0005, 0 7px 0 #050805,
+    inset 1px 1px 0 #ffffff15;
+}
+
+.register-modern .member-card-top,
+.register-modern .member-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.register-modern .member-card-top {
+  margin-bottom: 28px;
+}
+
+.register-modern .mini-brand {
+  color: #f4f7ef;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 2.5px;
+}
+
+.register-modern .member-badge {
+  padding: 7px 9px;
+  border: 1px solid #40513b;
+  border-radius: 8px;
+  color: var(--reg-green);
+  background: #1a2518;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1px;
+}
+
+.register-modern .register-preview-card .avatar {
+  display: grid;
+  place-items: center;
+  width: 94px;
+  height: 94px;
+  margin: 0 0 23px;
+  overflow: hidden;
+  border: 2px solid var(--reg-green);
+  border-radius: 50%;
+  color: var(--reg-green);
+  background: linear-gradient(145deg, #222d22, #111a13);
+  box-shadow: 0 0 0 6px #b8f7790b, 0 12px 25px #0005;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.register-modern .register-preview-card .avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.register-modern .register-preview-card .card-domain {
+  margin: 0 0 9px;
+  color: var(--reg-green);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 1.8px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-preview-card h2 {
+  margin: 0 0 8px;
+  color: #f5f7f2;
+  font-size: clamp(23px, 3vw, 31px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-preview-card .card-position {
+  margin: 0 0 14px;
+  color: #c0cbb9;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.register-modern .register-preview-card .card-bio {
+  min-height: 65px;
+  margin: 0;
+  color: #a8b3a5;
+  font-size: 12px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-preview-card .member-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+  padding: 17px 0;
+  border-top: 1px solid #ffffff16;
+  border-bottom: 1px solid #ffffff16;
+}
+
+.register-modern .register-preview-card .member-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.register-modern .register-preview-card .member-details span {
+  color: #8d9989;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 1.4px;
+}
+
+.register-modern .register-preview-card .member-details strong {
+  color: #f0f5ec;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .register-preview-card .member-card-footer {
+  margin-top: 17px;
+  color: #899587;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+
+.register-modern .preview-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #354034;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #182018, #101510);
+  box-shadow: 0 7px 0 #080b08, inset 1px 1px 0 #ffffff07;
+}
+
+.register-modern .preview-tip > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #455a3b;
+  border-radius: 9px;
+  color: var(--reg-green);
+  background: #202d1a;
+}
+
+.register-modern .preview-tip p {
+  min-width: 0;
+  margin: 0;
+  color: #a5b09e;
+  font-size: 11px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.register-modern .preview-tip strong {
+  color: #e6f4dd;
+  font-size: 12px;
+}
+
+/* Footer */
+.register-modern .register-footer-3d {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 18px !important;
+  width: 100%;
+  margin: 40px auto 0 !important;
+  padding: 25px 0 18px !important;
+  border-top: 1px solid #303a33 !important;
+}
+
+.register-modern .register-footer-3d > span {
+  display: block;
+  color: #9ba695;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  line-height: 1.8;
+}
+
+.register-modern .register-footer-3d .return-home-3d {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0;
+  gap: 10px !important;
+  padding: 12px 17px !important;
+  border: 1px solid #77975e !important;
+  border-radius: 11px !important;
+  color: #d5ffa5 !important;
+  background: linear-gradient(145deg, #24321e, #111910) !important;
+  box-shadow: 0 4px 0 #080d07, 0 9px 18px #0004 !important;
+  font-size: 11px !important;
+  font-weight: 750 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  transition: transform .2s, box-shadow .2s !important;
+}
+
+.register-modern .register-footer-3d .return-home-3d:hover {
+  transform: translateY(-3px);
+  border-color: var(--reg-green) !important;
+  box-shadow: 0 7px 0 #080d07, 0 14px 24px #b8f77915 !important;
+}
+
+.register-modern .register-footer-3d .return-home-3d:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #080d07 !important;
+}
+
+/* Responsive tablet */
+@media (max-width: 950px) {
+  .register-modern .register-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .register-modern .register-modern-preview {
+    position: relative;
+    top: auto;
+  }
+
+  .register-modern .register-preview-card {
+    max-width: 620px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/* Responsive mobile */
+@media (max-width: 560px) {
+  .register-modern {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .register-modern .register-nav {
+    min-height: 74px;
+  }
+
+  .register-modern .brand {
+    gap: 9px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+  .register-modern .brand-mark {
+    width: 37px;
+    height: 37px;
+    border-radius: 11px;
+    font-size: 20px;
+  }
+
+  .register-modern .register-home-button {
+    gap: 6px;
+    min-height: 38px;
+    padding: 9px 10px;
+    font-size: 10px;
+  }
+
+  .register-modern .register-hero {
+    padding: 50px 0 32px;
+  }
+
+  .register-modern .register-hero h1 {
+    font-size: clamp(42px, 12vw, 62px);
+    letter-spacing: -2.8px;
+  }
+
+  .register-modern .register-hero > p:not(.eyebrow) {
+    font-size: 13px;
+  }
+
+  .register-modern .register-form {
+    gap: 17px;
+    padding: 19px 15px;
+    border-radius: 16px;
+  }
+
+  .register-modern .register-form .form-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 17px;
+  }
+
+  .register-modern .register-form .register-modern-submit {
+    width: 100% !important;
+  }
+
+  .register-modern .register-modern-preview {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .register-modern .register-preview-card {
+    padding: 19px;
+  }
+
+  .register-modern .register-footer-3d {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    margin-top: 32px !important;
+  }
+}
